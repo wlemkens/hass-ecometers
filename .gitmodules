@@ -1,0 +1,3 @@
+[submodule "ecometers"]
+	path = ecometers
+	url = git@github.com:wlemkens/ecometers.git
