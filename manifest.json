@@ -1,0 +1,14 @@
+{
+  "domain": "eco_meter_s",
+  "name": "Eco Meter S",
+  "config_flow": true,
+  "documentation": "https://github.com/wlemkens/hass-ecometers",
+  "requirements": [],
+  "ssdp": [],
+  "zeroconf": [],
+  "homekit": {},
+  "dependencies": [],
+  "codeowners": ["@wlemkens"],
+  "iot_class": "local_polling",
+  "version": "0.0.1"
+}
