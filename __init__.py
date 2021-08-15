@@ -5,7 +5,7 @@ Configuration:
 
 """
 from homeassistant.core import callback
-from ecometers.ecometers.ecometers import EcoMeterS
+from .ecometers.ecometers.ecometers import EcoMeterS
 
 import voluptuous as vol
 
