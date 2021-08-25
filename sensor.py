@@ -30,6 +30,17 @@ from .ecometers.ecometers.ecometers import EcoMeterS
 from homeassistant.const import TEMP_CELSIUS
 from homeassistant.helpers.entity import Entity
 
+DEFAULT_PORT = '/dev/ttyUSB0'
+ 
+CONF_PORT = "serial_port"
+CONF_HEIGHT = "height"
+CONF_OFFSET = "offset"
+
+PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
+    vol.Required(CONF_PORT): cv.string,
+    vol.Required(CONF_HEIGHT): cv.positive_int,
+    vol.Required(CONF_OFFSET): cv.positive_int
+})
 
 def setup_platform(hass, config, add_entities, discovery_info=None):
     """Set up the sensor platform."""
