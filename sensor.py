@@ -68,8 +68,8 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     port = config.get(CONF_PORT, DEFAULT_PORT)
     height = config.get(CONF_HEIGHT)
     offset = config.get(CONF_OFFSET)
-    _LOGGER.warning("Config, port = %s, heigt = %d, offset = %d",
-                            port, height, offset)
+#    _LOGGER.info("Config, port = %s, heigt = %d, offset = %d",
+#                            port, height, offset)
 
 
     ecometers = EcoMeterS(port, height, offset)
@@ -98,7 +98,6 @@ class EcoMeterSSensor(Entity):
     def name(self):
         """Return the name of the sensor."""
         return self._name
-        #return self._cfg_expand("friendly_name")
 
     @property
     def state(self):
@@ -134,7 +133,6 @@ class EcoMeterSLevelSensor(EcoMeterSSensor):
         self._state = ecometers.level
 
     def on_data_received(self, ecometers: EcoMeterS):
-        _LOGGER.warning("Data received")
         self._state = ecometers.level
 
 
@@ -149,7 +147,6 @@ class EcoMeterSUsableSensor(EcoMeterSSensor):
         self._state = ecometers.usable
 
     def on_data_received(self, ecometers: EcoMeterS):
-        _LOGGER.warning("Data received")
         self._state = ecometers.usable
 
 
@@ -164,7 +161,6 @@ class EcoMeterSPercentageSensor(EcoMeterSSensor):
         self._state = ecometers.percentage
 
     def on_data_received(self, ecometers: EcoMeterS):
-        _LOGGER.warning("Data received")
         self._state = ecometers.percentage
 
 class EcoMeterSTemperatureSensor(EcoMeterSSensor):
@@ -178,6 +174,5 @@ class EcoMeterSTemperatureSensor(EcoMeterSSensor):
         self._state = ecometers.temperature
 
     def on_data_received(self, ecometers: EcoMeterS):
-        _LOGGER.warning("Data received")
         self._state = ecometers.temperature
 
