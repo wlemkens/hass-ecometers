@@ -63,6 +63,18 @@ sensor:
     offset: DISTANCE BETWEEN THE SENSOR AND THE MAX WATER LEVEL
 ```
 
+### Installation completion
+Restart Home Assistant.
+Settings > System > Restart (on top right)
+
+After restart, you should have the following entities:
+- sensor.tank_fill : Fill level in %
+- sensor.tank_level : Fill level in cm
+- sensor.tank_temperature : Temperature inside the tank
+- sensor.tank_volume : Fill level in liters.
+
+The component doesn't show up in the Integrations tab. You can find the sensors in the "Entities" tab.
+
 ### Note
 It is recommended to use `/dev/serial/by-id/DEVICE_ID` to configure your usb port since this will be guarenteed to remain the same after reboot.
 
