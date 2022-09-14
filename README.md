@@ -5,6 +5,11 @@ Integration for the Eco Meter S tank level sensor
 This guide assumes your are in a terminal on the device running Home Assistant. 
 Either directly or by ssh.
 
+### Summary
+- Put the component in the custom_components directory
+- Add the component to the configuration.yaml
+- Restart Home Assistant
+
 ### Component
 The component needs to be installed in the `custom_components` directory.
 This directory is located in the `config` directory that can be on different places depending on your Home Assistant setup.
