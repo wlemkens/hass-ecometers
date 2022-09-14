@@ -1,6 +1,9 @@
 # hass-ecometers
 Integration for the Eco Meter S tank level sensor
 
+The integration conatins a partial feature set of what is available in the Eco Meter S (see below).
+Feel free to open an issue for feature requests.
+
 ## Installation
 This guide assumes your are in a terminal on the device running Home Assistant. 
 Either directly or by ssh.
@@ -31,15 +34,19 @@ cd $CONFIG/custom_components/
 git clone --recurse-submodules https://github.com/wlemkens/hass-ecometers.git
 ```
 
-#### Test
+#### Test (optional)
 You can test the component.
 (Replace /dev/YOUR_USB_PORT with the correct port. For how to figure that out see below.)
+
+(If you skipped some steps or resumed an earlier process or use a different terminal, make sure to have $CONFIG set as in `export CONFIG=/PATH_TO_YOUR_CONFIG` earlier)
 ```
 cd $CONFIG/custom_components/hass-ecometers/ecometers/example/
-ptyhon example.py /dev/YOUR_USB_PORT
+python example.py /dev/YOUR_USB_PORT
 ```
 
 It might take some time (order of half an hour) before some reading comes through since the data is only send periodically.
+
+NOTE: Make sure python is installed. If not, use something like `sudo apt install python` to install it.
 
 
 ### Configuration
@@ -79,6 +86,8 @@ After restart, you should have the following entities:
 - sensor.tank_volume : Fill level in liters.
 
 The component doesn't show up in the Integrations tab. You can find the sensors in the "Entities" tab.
+
+You now can add these sensors to a dashboard to display the values.
 
 ### Note
 It is recommended to use `/dev/serial/by-id/DEVICE_ID` to configure your usb port since this will be guarenteed to remain the same after reboot.
