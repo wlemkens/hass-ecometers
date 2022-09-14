@@ -19,7 +19,8 @@ from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import (
     TEMP_CELSIUS, LENGTH_CENTIMETERS, LENGTH_METERS, PERCENTAGE, VOLUME_LITERS)
 from homeassistant.exceptions import PlatformNotReady
-from homeassistant.helpers.entity import Entity
+#from homeassistant.helpers.entity import Entity
+from homeassistant.components.sensor import SensorEntity
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.util import Throttle
 import homeassistant.helpers.config_validation as cv
@@ -84,7 +85,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     #add_entities([ExampleSensor()])
 
 
-class EcoMeterSSensor(Entity):
+class EcoMeterSSensor(SensorEntity):
     """Implementing the Eco Meter S sensor."""
 
     def __init__(self, ecometers: EcoMeterS,
@@ -126,6 +127,7 @@ class EcoMeterSLevelSensor(EcoMeterSSensor):
     def __init__(self, ecometers: EcoMeterS,
                 unique_id_base: str):
         super(EcoMeterSLevelSensor, self).__init__(ecometers, unique_id_base)
+        _LOGGER.debug("Set up level")
         self._name = "Tank level"
         self._unit_of_measurement = LENGTH_CENTIMETERS
         self._icon = "mdi:arrow-expand-vertical"
@@ -134,12 +136,14 @@ class EcoMeterSLevelSensor(EcoMeterSSensor):
 
     def on_data_received(self, ecometers: EcoMeterS):
         self._state = ecometers.level
+        _LOGGER.debug("Level {:}cm".format(self._state))
 
 
 class EcoMeterSUsableSensor(EcoMeterSSensor):
     def __init__(self, ecometers: EcoMeterS,
                 unique_id_base: str):
         super(EcoMeterSUsableSensor, self).__init__(ecometers, unique_id_base)
+        _LOGGER.debug("Set up volume")
         self._name = "Tank volume"
         self._unit_of_measurement = VOLUME_LITERS
         self._icon = "mdi:hydraulic-oil-level"
@@ -148,12 +152,14 @@ class EcoMeterSUsableSensor(EcoMeterSSensor):
 
     def on_data_received(self, ecometers: EcoMeterS):
         self._state = ecometers.usable
+        _LOGGER.debug("Volume {:}m^2".format(self._state))
 
 
 class EcoMeterSPercentageSensor(EcoMeterSSensor):
     def __init__(self, ecometers: EcoMeterS,
                 unique_id_base: str):
         super(EcoMeterSPercentageSensor, self).__init__(ecometers, unique_id_base)
+        _LOGGER.debug("Set up fill")
         self._name = "Tank fill"
         self._unit_of_measurement = PERCENTAGE
         self._icon = "mdi:hydraulic-oil-level"
@@ -162,11 +168,13 @@ class EcoMeterSPercentageSensor(EcoMeterSSensor):
 
     def on_data_received(self, ecometers: EcoMeterS):
         self._state = ecometers.percentage
+        _LOGGER.debug("Level {:}%".format(self._state))
 
 class EcoMeterSTemperatureSensor(EcoMeterSSensor):
     def __init__(self, ecometers: EcoMeterS,
                 unique_id_base: str):
         super(EcoMeterSTemperatureSensor, self).__init__(ecometers, unique_id_base)
+        _LOGGER.debug("Set up temperature")
         self._name = "Tank temperature"
         self._unit_of_measurement = TEMP_CELSIUS
         self._icon = "mdi:thermometer-lines"
@@ -175,4 +183,5 @@ class EcoMeterSTemperatureSensor(EcoMeterSSensor):
 
     def on_data_received(self, ecometers: EcoMeterS):
         self._state = ecometers.temperature
+        _LOGGER.debug("Temperature {:}C".format(self._state))
 
