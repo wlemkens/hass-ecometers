@@ -152,7 +152,7 @@ class EcoMeterSUsableSensor(EcoMeterSSensor):
 
     def on_data_received(self, ecometers: EcoMeterS):
         self._state = ecometers.usable
-        _LOGGER.debug("Volume {:}m^2".format(self._state))
+        _LOGGER.debug("Volume {:}m^3".format(self._state))
 
 
 class EcoMeterSPercentageSensor(EcoMeterSSensor):
